@@ -1,4 +1,3 @@
-/* Xem trước cục bộ; cloud.js tải ảnh lên Storage khi lưu sản phẩm. */
 let pendingProductImage='';
 let productImageLoading=false;
 let productImageVersion=0;
