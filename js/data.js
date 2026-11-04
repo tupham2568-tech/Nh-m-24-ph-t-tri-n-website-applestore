@@ -1,7 +1,6 @@
 const VND = new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0});
 const vnd = n => VND.format(n);
 
-/* Danh mục mẫu gốc. Giá và thông số chưa được xác minh lại; quản trị viên cần kiểm tra trước khi bán. */
 const CATS = ['Tất cả','iPhone','iPad','Mac','Watch','AirPods','Phụ kiện'];
 let PRODUCTS = [
  {id:1, name:'iPhone 15 Pro Max 256 GB', cat:'iPhone', price:29990000, old:33990000, emoji:'📱', stock:25, isNew:false, verified:false, desc:'Khung titan siêu nhẹ, chip A17 Pro, camera 48MP, màn hình Super Retina XDR 6,7 inch. Hàng chính hãng VN/A.'},
