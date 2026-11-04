@@ -45,7 +45,6 @@ function openDetail(id){
 }
 function dq(id){const el=document.getElementById('qty'+id);el.value=Math.max(1,+el.value-1)}
 function iq(id){const el=document.getElementById('qty'+id);el.value=Math.min(p(id).stock,+el.value+1)}
-// addToCart được triển khai trong cloud.js
 
 async function buyNow(id){if(await addToCart(id))go('cart')}
 
@@ -68,9 +67,7 @@ function renderCart(){
     <button class="btn" style="width:100%;margin-top:14px" onclick="go('checkout')">Tiến hành đặt hàng →</button>
    </div></div>`;
 }
-// cartQty được triển khai trong cloud.js
 
-// removeCart được triển khai trong cloud.js
 
 let payMethod='COD';let appliedPromo=null;let checkoutDraft={};
 function rememberCheckout(){for(const id of ['ckName','ckPhone','ckAddr','ckNote']){const el=document.getElementById(id);if(el)checkoutDraft[id]=el.value}}
@@ -128,7 +125,6 @@ function recalcTotals(sub){
   document.getElementById('grandTotal').textContent=vnd(sub-disc+ship);
   return {disc,ship};
 }
-// placeOrder được triển khai trong cloud.js
 
 function renderOrders(){
   const box=document.getElementById('ordersBox');const u=cur();
@@ -150,7 +146,6 @@ function orderCard(o){
   </div>`;
 }
 function trackOrder(id){go('orders');setTimeout(()=>{const el=[...document.querySelectorAll('#ordersBox b')].find(b=>b.textContent.includes(id));el?.scrollIntoView({behavior:'smooth',block:'center'})},100)}
-// cancelOrder được triển khai trong cloud.js
 
 function reviewModal(pid){
   if(!cur())return toast('Vui lòng đăng nhập để đánh giá sản phẩm');
@@ -161,4 +156,3 @@ function reviewModal(pid){
    <button class="btn" style="width:100%" onclick="submitReview(${pid})">Gửi đánh giá</button>`;
   document.getElementById('modalBg').classList.add('open');
 }
-// submitReview được triển khai trong cloud.js
