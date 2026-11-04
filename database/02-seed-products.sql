@@ -1,4 +1,3 @@
--- Chạy tùy chọn, SAU 01-schema.sql. Không ghi đè sản phẩm đã có.
 begin;
 insert into public.products(id,data,stock) values (1,'{"id": 1, "name": "iPhone 15 Pro Max 256 GB", "cat": "iPhone", "price": 29990000, "old": 33990000, "emoji": "📱", "stock": 25, "isNew": false, "verified": false, "desc": "Khung titan siêu nhẹ, chip A17 Pro, camera 48MP, màn hình Super Retina XDR 6,7 inch. Hàng chính hãng VN/A."}'::jsonb,25) on conflict(id) do nothing;
 insert into public.products(id,data,stock) values (2,'{"id": 2, "name": "iPhone 15 Pro 128 GB", "cat": "iPhone", "price": 25990000, "old": null, "emoji": "📱", "stock": 30, "isNew": false, "verified": false, "desc": "Chip A17 Pro, khung titan, cổng USB-C. Hiệu năng chuyên nghiệp trong thân hình nhỏ gọn."}'::jsonb,30) on conflict(id) do nothing;
