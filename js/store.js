@@ -1,5 +1,4 @@
-/* Trạng thái bộ nhớ của giao diện. Dữ liệu nghiệp vụ chỉ ghi qua cloud.js.
-   localStorage chỉ còn giỏ khách, token Supabase và dữ liệu cũ chờ chuyển đổi. */
+
 const LS={get(k,d){try{return JSON.parse(localStorage.getItem('applevn_'+k))??d}catch{return d}},set(k,v){try{localStorage.setItem('applevn_'+k,JSON.stringify(v));return true}catch{return false}}};
 const LEGACY_PRODUCTS=PRODUCTS.map(x=>({...x}));
 PRODUCTS=[];
