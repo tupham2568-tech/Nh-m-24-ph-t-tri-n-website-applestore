@@ -1,4 +1,3 @@
-/* Supabase adapter. No service key, no shared JSON blob, no fake offline success. */
 let db=null, cloudReady=false, cloudUser=null, cloudAdmin=false, cartVersion=0;
 let cloudBusy=false, refreshing=false, refreshTimer=null, recoveryMode=false;
 let signupInProgress = false;let lastSnapshot='', checkoutRequest=null;
@@ -41,7 +40,6 @@ async function refreshCloud(redraw=true){
 }
 function paintCloud(force=false){
  if(isAdminPage){
-  // Do not destroy a form/selection while the administrator is editing.
   if(!$('modalBg')?.classList.contains('open')&&(force||!$('adminBox')?.contains(document.activeElement)))renderAdmin();
  }else{
   updateAuthBtn();updateBadge();
@@ -86,7 +84,6 @@ async function bootCloud(){
   await loadIdentity();
   await refreshCloud();
   if(recoveryMode)showRecovery();
-  // Polling is deliberately used: no Realtime/publication setup is necessary.
   refreshTimer=setInterval(()=>{if(!document.hidden&&!cloudBusy)syncSession().catch(()=>{})},Math.max(5000,Number(cfg.SYNC_INTERVAL_MS)||15000));
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!cloudBusy)syncSession().catch(()=>{})});
  }catch(e){cloudStatus('⚠ '+failMessage(e),true);toast(failMessage(e))}
