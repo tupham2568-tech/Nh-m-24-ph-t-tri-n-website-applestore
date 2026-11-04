@@ -47,9 +47,7 @@ function ordersTable(list,manage){
    ${manage?`<td><select class="sel" style="padding:6px" onchange="setOrderStatus('${esc(o.id)}',this.value)">
      ${[...ORDER_FLOW,'Đã hủy'].map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select></td>`:''}</tr>`).join('')||'<tr><td colspan="6" style="text-align:center;color:var(--muted)">Chưa có đơn hàng</td></tr>'}</table>`;
 }
-// setOrderStatus được triển khai trong cloud.js
 
-// toggleShow được triển khai trong cloud.js
 
 function productModal(id){
   if(!curAdmin())return;
@@ -70,13 +68,8 @@ function productModal(id){
    ${id?`<button class="btn danger" style="width:100%;margin-top:10px" onclick="deleteProduct(${id})">Xóa sản phẩm</button>`:''}`;
   document.getElementById('modalBg').classList.add('open');
 }
-// saveProduct được triển khai trong cloud.js
-
-// deleteProduct được triển khai trong cloud.js
 
 function renderAdminLogin(){
  document.getElementById('adminLoginBox').innerHTML=`<div class="panel admin-login-card"><h1>Đăng nhập quản trị</h1><p>Tài khoản khách hàng không dùng tại khu vực này.</p><form onsubmit="event.preventDefault();adminLogin()"><div class="field"><label for="adEmail">Email quản trị</label><input id="adEmail" type="email" autocomplete="username" required></div><div class="field"><label for="adPass">Mật khẩu</label><input id="adPass" type="password" autocomplete="current-password" required></div><button class="btn" type="submit">Đăng nhập quản trị</button></form><p class="demo-note">Dùng tài khoản đã được cấp quyền quản trị trên máy chủ.</p><a href="index.html">← Về trang khách hàng</a></div>`;
 }
-// adminLogin được triển khai trong cloud.js
 
-// adminLogout được triển khai trong cloud.js
