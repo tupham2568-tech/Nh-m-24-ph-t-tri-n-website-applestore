@@ -17,11 +17,7 @@ function signupModal(){
    <button class="btn" style="width:100%" onclick="signup()">Đăng ký</button>`;
   document.getElementById('modalBg').classList.add('open');
 }
-// signup được triển khai trong cloud.js
 
-// login được triển khai trong cloud.js
-
-// logout được triển khai trong cloud.js
 
 function updateAuthBtn(){
  const b=document.getElementById('authBtn'),u=cur();if(!b)return;
@@ -46,6 +42,3 @@ function renderAccount(){
    ${myOrders.slice(-3).reverse().map(o=>`<div style="padding:10px 0;border-bottom:1px solid #eee;font-size:14px">📦 #${o.id} — ${vnd(o.total)} — <span class="status-pill st-${statusClass(o.status)}">${o.status}</span></div>`).join('')||'<p style="color:var(--muted);font-size:14px">Chưa có đơn hàng nào.</p>'}
   </div>`;
 }
-// updateAccount được triển khai trong cloud.js
-
-// fillDemoCustomer được triển khai trong cloud.js
