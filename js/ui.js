@@ -1,4 +1,3 @@
-/* Tiện ích giao diện dùng chung cho hai trang. */
 let toastTimer;
 function toast(m){const t=document.getElementById('toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
 function closeModal(){document.getElementById('modalBg')?.classList.remove('open')}
