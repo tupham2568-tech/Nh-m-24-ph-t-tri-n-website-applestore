@@ -1,5 +1,3 @@
-        -- Apple Store VN: chạy MỘT LẦN trong Supabase SQL Editor, quyền postgres.
-        -- Không chạy seed / schema tự động trong mỗi lần Netlify deploy.
         begin;
         create schema if not exists private;
         revoke all on schema private from public,anon,authenticated;
@@ -23,7 +21,7 @@
         return new;
         end;$$;
         create trigger on_auth_user_created after insert on auth.users for each row execute function private.new_profile();
-        -- Hỗ trợ tài khoản đã có trong một dự án mới cài schema.
+
         insert into public.profiles(id,email,name)
         select id,coalesce(email,''),left(coalesce(nullif(raw_user_meta_data->>'name',''),split_part(email,'@',1),'Khách hàng'),120) from auth.users on conflict do nothing;
         create table public.products(
@@ -120,7 +118,7 @@
         begin
         if uid is null then raise exception 'Vui lòng đăng nhập để đặt hàng';end if;
         if request_key is null then raise exception 'Thiếu mã yêu cầu';end if;
-        -- Serialize retries of one request so a timeout never duplicates the order.
+
         perform pg_advisory_xact_lock(hashtextextended(request_key::text,0));
         select * into existing from public.orders where request_id=request_key;
         if found then
@@ -195,8 +193,8 @@
         update public.orders set user_id=auth.uid() where user_id is null and lower(data->>'email')=lower(verified_email);
         end if;
         end;$$;
-        -- Chuyển localStorage một lần, chỉ trước khi cửa hàng có đơn cloud/review.
-        -- Đây không phải chức năng khôi phục toàn bộ Auth/Storage.
+        
+
         create function public.import_legacy(snapshot jsonb) returns void language plpgsql security definer set search_path='' as $$
         declare d jsonb; owner_id uuid; line jsonb;
         begin
@@ -220,13 +218,13 @@
         end loop;
         insert into private.settings values('legacy_import',jsonb_build_object('at',now(),'by',auth.uid()));
         end;$$;
-        -- Public functions are NOT executable by anonymous callers except is_admin().
+
         revoke execute on function public.is_admin() from public;
         grant execute on function public.is_admin() to anon,authenticated;
         revoke execute on function public.save_product(jsonb,integer),public.delete_product(bigint,integer),public.save_cart(jsonb,integer),public.place_order(jsonb,jsonb,text,text,uuid),public.set_order_status(text,text),public.submit_review(bigint,integer,text),public.claim_legacy_orders(),public.import_legacy(jsonb) from public,anon;
         grant execute on function public.save_product(jsonb,integer),public.delete_product(bigint,integer),public.save_cart(jsonb,integer),public.place_order(jsonb,jsonb,text,text,uuid),public.set_order_status(text,text),public.submit_review(bigint,integer,text),public.claim_legacy_orders(),public.import_legacy(jsonb) to authenticated;
         revoke all on all functions in schema private from public,anon,authenticated;
-        -- Public product-image bucket: visitors can read, ONLY admins can upload/delete.
+
         insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types) values('product-images','product-images',true,512000,array['image/png','image/jpeg','image/webp']) on conflict(id) do nothing;
         create policy apple_images_insert on storage.objects for insert to authenticated with check(bucket_id='product-images' and (select public.is_admin()));
         create policy apple_images_delete on storage.objects for delete to authenticated using(bucket_id='product-images' and (select public.is_admin()));
