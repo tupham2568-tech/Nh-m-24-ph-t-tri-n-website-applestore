@@ -25,9 +25,6 @@ Giấy phép MIT
 Bản quyền (c) 2020 Supabase
 
 Theo đây, quyền được cấp miễn phí cho bất kỳ cá nhân nào có được bản sao của phần mềm này và các tệp tài liệu liên quan ("Phần mềm"), được phép sử dụng Phần mềm mà không bị hạn chế, bao gồm nhưng không giới hạn quyền sử dụng, sao chép, chỉnh sửa, hợp nhất, xuất bản, phân phối, cấp phép lại và/hoặc bán các bản sao của Phần mềm, đồng thời cho phép những người được cung cấp Phần mềm thực hiện các quyền tương tự, với điều kiện sau:
-
 Thông báo bản quyền và thông báo cấp phép này phải được giữ nguyên trong tất cả các bản sao hoặc các phần quan trọng của Phần mềm.
-
 PHẦN MỀM ĐƯỢC CUNG CẤP "NGUYÊN TRẠNG", KHÔNG CÓ BẤT KỲ SỰ ĐẢM BẢO NÀO, DÙ RÕ RÀNG HAY NGỤ Ý, BAO GỒM NHƯNG KHÔNG GIỚI HẠN Ở CÁC BẢO ĐẢM VỀ KHẢ NĂNG THƯƠNG MẠI, SỰ PHÙ HỢP VỚI MỘT MỤC ĐÍCH CỤ THỂ VÀ KHÔNG VI PHẠM QUYỀN CỦA BÊN THỨ BA.
-
 TRONG MỌI TRƯỜNG HỢP, CÁC TÁC GIẢ HOẶC CHỦ SỞ HỮU BẢN QUYỀN SẼ KHÔNG CHỊU TRÁCH NHIỆM ĐỐI VỚI BẤT KỲ KHIẾU NẠI, THIỆT HẠI HOẶC TRÁCH NHIỆM PHÁP LÝ NÀO KHÁC, DÙ LÀ THEO HỢP ĐỒNG, HÀNH VI VI PHẠM HAY HÌNH THỨC KHÁC, PHÁT SINH TỪ, DO HOẶC LIÊN QUAN ĐẾN PHẦN MỀM HOẶC VIỆC SỬ DỤNG PHẦN MỀM.
