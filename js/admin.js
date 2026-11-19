@@ -62,8 +62,8 @@ function productModal(id){
   editingProduct=id||null;
   editingVersion=id?p(id)?.version||1:0;
   const x=id?p(id):{name:'',cat:'iPhone',price:0,stock:0,emoji:'📦',desc:''};
-  /* Nạp bản nháp ảnh thật của các biến thể (màu / phiên bản) */
-  startPhotoDraft(id?p(id):null);
+
+    startPhotoDraft(id?p(id):null);
   document.getElementById('modalBox').className='modal wide';
   document.getElementById('modalBox').innerHTML=`<h2 class="sec" style="font-size:22px">${id?'✏️ Sửa sản phẩm':'＋ Thêm sản phẩm'}</h2>
    <div class="field" style="margin-bottom:10px"><label>Tên sản phẩm</label><input id="fmName" value="${esc(x.name)}" oninput="syncPhotoEditor()"></div>
@@ -81,20 +81,14 @@ function productModal(id){
   document.getElementById('modalBg').classList.add('open');
 }
 
-/* Tên/danh mục/giá thay đổi thì danh sách màu và phiên bản đổi theo */
+
 function syncPhotoEditor(){
  const box=document.getElementById('photoEditor');
  if(box)renderPhotoEditor();
 }
 
-/* ==========================================================================
-   QUẢN LÝ TRẠNG THÁI ĐƠN HÀNG
-   --------------------------------------------------------------------------
-   Hai lớp dữ liệu được tách rõ ràng:
-   • TRẠNG THÁI ĐƠN  → RPC set_order_status trên Supabase (dùng chung mọi máy).
-   • TRẠNG THÁI THANH TOÁN và GHI CHÚ → chưa có cột trên máy chủ, lưu trong
-     localStorage của trình duyệt này (js/order-meta.js) và giao diện ghi rõ.
-   ========================================================================== */
+
+
 const ORDER_STATUS_TONE = {
   'Đặt hàng':'moi','Đã xác nhận':'xacnhan','Đang giao':'giao','Hoàn thành':'hoanthanh','Đã hủy':'huy'
 };
@@ -149,10 +143,10 @@ function renderOrdersAdmin(box){
    </div>`;
 }
 
-/* Thứ tự hiển thị của ô chọn trạng thái thanh toán */
+
 const PAY_STATUS_KEYS = ['pending', 'cod', 'paid', 'failed', 'refunded', 'cancelled'];
 
-/* Gợi ý bước kế tiếp theo vòng đời đơn */
+
 function nextOrderStatus(current) {
   const i = ORDER_FLOW.indexOf(current);
   if (i < 0) return ORDER_FLOW[0];
@@ -215,8 +209,8 @@ async function adminSaveOrderStatus(id) {
   const payNext = document.getElementById('osPay').value;
   const note = document.getElementById('osNote').value.trim().slice(0, 500);
 
-  /* Ghi chú + trạng thái thanh toán: lưu cục bộ trước để không mất khi RPC lỗi */
-  const prevPay = orderPayStatus(o);
+
+    const prevPay = orderPayStatus(o);
   setOrderMeta(o.id, {note, payStatus: payNext});
   if (payNext !== prevPay) {
     appendOrderHistory(o.id, {type: 'pay', text: `Thanh toán: ${PAY_STATUS[prevPay].label} → ${PAY_STATUS[payNext].label}`});
